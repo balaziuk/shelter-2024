@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Притулок для тварин{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styless.css' %}">
+</head>
+<body>
+    <script src="{% static 'js/modal.js' %}"></script>
+
+    <header>
+        <!--         <div class="logo">HOMEFOUND</div>
+ -->
+        <a href="{% url 'homepage' %}">
+            <div class="logo">HOMEFOUND</div>
+ 
+        </a>
+        <nav>
+            <a href="{% url 'animal_list' %}">Всі тварини</a>
+            <a href="{% url 'animal_list_dogs' %}">Собаки</a>
+            <a href="{% url 'animal_list_cats' %}">Коти</a>
+            <a href="{% url 'animal_list_other' %}">Інші тварини</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2024 HOMEFOUND</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Вхід</h2>
+  <form method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}  
+    <button type="submit">Увійти</button>
+  </form>
+  <p>Не маєте облікового запису? <a href="{% url 'account_signup' %}">Зареєструйтеся</a></p>
+  <p>Після входу ви будете перенаправлені на вашу сторінку профілю.</p>
+{% endblock %}

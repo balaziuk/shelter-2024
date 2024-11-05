@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Реєстрація</h2>
+  <form method="POST" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }} 
+    <button type="submit">Зареєструватися</button>
+  </form>
+  <p>Вже є обліковий запис? <a href="{% url 'account_login' %}">Увійти</a></p>
+  <p>Після реєстрації ви будете перенаправлені на вашу сторінку профілю.</p>
+{% endblock %}

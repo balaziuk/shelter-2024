@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профіль користувача</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">HOMEFOUND</div>
+        <nav>
+            <a href="{% url 'homepage' %}">Головна</a>
+            <a href="{% url 'animal_list' %}">Всі тварини</a>
+            <a href="{% url 'account_logout' %}">Вийти</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Профіль користувача</h2>
+
+        <h3>Ваші усиновлені тварини:</h3>
+        <ul>
+            {% for animal in adopted_animals %}
+            <li>
+                {{ animal.name }} ({{ animal.species }})
+            </li>
+            {% empty %}
+            <li style="color: gray; font-style: italic;">У вас немає усиновлених тварин.</li>
+            {% endfor %}
+        </ul>
+
+        {% if 'volunteer' in roles %}
+        <h4>Волонтер:</h4>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="animal_id">Виберіть тварину:</label>
+            <select name="animal_id" id="animal_id">
+                {% for animal in animals %}
+                <option value="{{ animal.id }}">{{ animal.name }} ({{ animal.species }})</option>
+                {% empty %}
+                <option value="">Немає доступних тварин</option>
+                {% endfor %}
+            </select>
+
+            <label for="activity_type">Тип діяльності:</label>
+            <select name="activity_type" id="activity_type">
+                <option value="годування">Годування</option>
+                <option value="вигул">Вигул</option>
+                <option value="прибирання">Прибирання</option>
+                <option value="інше">Інше</option>
+            </select>
+
+            <button type="submit" class="btn">Додати діяльність</button>
+        </form>
+        {% endif %}
+
+        {% if volunteering_activities %}
+        <h3>Волонтерська діяльність:</h3>
+        <ul>
+            {% for activity in volunteering_activities %}
+            <li>{{ activity.activity_type }} для {{ activity.animal.name }} ({{ activity.timestamp }})</li>
+            {% empty %}
+            <li>У вас немає волонтерських активностей.</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <h3>Ваші ролі:</h3>
+        <ul>
+            {% for role in roles %}
+            <li>
+                {% if role == 'staff' %}
+                <h4>Працівник:</h4>
+                <p>Ви маєте можливість додавати нових тварин до системи.</p>
+                <a href="{% url 'add_animal' %}" class="btn">Додати тварину</a>
+                {% elif role == 'volunteer' %}
+                <h4>Волонтер:</h4>
+                <p>Ви можете займатися волонтерською діяльністю.</p>
+                {% elif role == 'adopter' %}
+                <h4>Усиновлювач:</h4>
+                <p>Ви можете усиновити тварину.</p>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% if roles|length < 3 %} <h3>Додати роль</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ role_change_form.as_p }}
+                <button type="submit" class="btn">Змінити роль</button>
+            </form>
+            {% endif %}
+    </main>
+</body>
+
+</html>

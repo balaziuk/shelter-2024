@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Головна</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+    
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">HOMEFOUND</div>
+        <nav class="nav">
+            <a href="#hero">Головна</a>
+            <a href="#join">Як допомогти</a>
+            <a href="#">Новини</a>
+            <a href="#contact">Контакти</a>
+            
+            {% if user.is_authenticated %}
+                <!-- Посилання на профіль -->
+                <a href="{% url 'profile' %}">Профіль</a>
+                <a href="{% url 'account_logout' %}">Вийти</a>
+            {% else %}
+                <!-- Якщо користувач не авторизований -->
+                <a href="{% url 'account_login' %}">Увійти</a>
+                <a href="{% url 'account_signup' %}">Зареєструватися</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="overlay"></div>
+            <div class="hero-content">
+                <p>Ласкаво просимо до Homefound​</p>
+                <h1>Знайдіть свого найкращого​ друга у нашій мережі притулків</h1>
+                <a href="{% url 'animal_list' %}" class="btn">Переглянути каталог</a>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about">
+            <h2>Про нас</h2>
+            <p>HomeFound - це більше, ніж просто притулок...</p>
+        </section>
+
+        <!-- Join Section -->
+        <section id="join">
+            <h2>Як ви можете долучитися</h2>
+            <h3>Всиновлення...</h3>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Контакти</h2>
+            <p>Телефон: +380 12 345 67 89</p>
+            <p>Email: info@homefound.com</p>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2024 HomeFound</p>
+    </footer>
+</body>
+</html>

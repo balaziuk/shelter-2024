@@ -1,0 +1,49 @@
+{% extends 'shelter/base.html' %}
+{% load static %}
+
+{% block title %}Список тварин{% endblock %}
+
+{% block content %}
+    <h2>Улюбленці притулку</h2>
+
+    {% if animals %}
+        <div class="animal-list">
+            {% for animal in animals %}
+            <div class="animal-card">
+                <img src="{% if animal.photo %}{{ animal.photo.url }}{% else %}{% static 'images/default-image.jpg' %}{% endif %}" 
+                     alt="{{ animal.name }}" 
+                     class="animal-photo"
+                     style="cursor: pointer;" 
+                     onclick="openModal('{{ animal.name|escapejs }}', '{{ animal.get_gender_display|escapejs }}',
+                      '{{ animal.get_species_display|escapejs }}', '{{ animal.breed|escapejs }}', '{{ animal.age }}', '{{ animal.health_status|escapejs }}')">
+                <div class="animal-info">
+                    <h3>{{ animal.name }}</h3>
+                    <p>Гендер: {{ animal.get_gender_display }}</p>
+                    <p>Вид: {{ animal.get_species_display }}</p>
+                    <p>Порода: {{ animal.breed }}</p>
+                    <p>Вік: {{ animal.age }} років</p>
+                    <p>Стан здоров'я: {{ animal.health_status }}</p>
+                    <p>Прийнято: {{ animal.adopted|yesno:"Так,Ні" }}</p>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+                <div class="clearfix"></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>На жаль, наразі немає доступних тварин.</p>
+    {% endif %}
+
+    <!-- Модальне вікно для деталей тварини -->
+    <div id="animalModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalAnimalName"></h2>
+            <img id="modalAnimalImage" src="" alt="" style="width: 100%; height: auto;" />
+            <p id="modalAnimalDetails"></p>
+            <button id="adoptButton">Всиновити</button>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'shelter/base.html' %}
+{% load static %} <!-- Додайте цю строку -->
+
+{% block title %}Усиновлення {{ animal.name }}{% endblock %}
+
+{% block content %}
+<h2>Усиновлення {{ animal.name }}</h2>
+
+<img src="{% if animal.photo %}{{ animal.photo.url }}{% else %}{% static 'images/default-image.jpg' %}{% endif %}"
+    alt="{{ animal.name }}" style="width: 100%; max-width: 400px;">
+
+<div class="animal-details">
+    <p>Гендер: {{ animal.get_gender_display }}</p>
+    <p>Вид: {{ animal.get_species_display }}</p>
+    <p>Порода: {{ animal.breed }}</p>
+    <p>Вік: {{ animal.age }} років</p>
+    <p>Стан здоров'я: {{ animal.health_status }}</p>
+</div>
+
+{% if animal.adopted %}
+<p>Ця тварина вже усиновлена.</p>
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Усиновити</button>
+</form>
+{% endif %}
+
+{% endblock %}
