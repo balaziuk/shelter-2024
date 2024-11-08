@@ -1,40 +1,40 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="uk">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage1.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <title>Головна</title>
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 </head>
+
 <body>
-    
-    <!-- Header Section -->
-    <header class="header">
+
+    <!-- Navigation Section -->
+    <nav class="nav">
         <div class="logo">HOMEFOUND</div>
-        <nav class="nav">
-            <a href="#hero">Головна</a>
-            <a href="#join">Як допомогти</a>
-            <a href="#">Новини</a>
-            <a href="#contact">Контакти</a>
-            
-            {% if user.is_authenticated %}
-                <!-- Посилання на профіль -->
-                <a href="{% url 'profile' %}">Профіль</a>
-                <a href="{% url 'account_logout' %}">Вийти</a>
-            {% else %}
-                <!-- Якщо користувач не авторизований -->
-                <a href="{% url 'account_login' %}">Увійти</a>
-                <a href="{% url 'account_signup' %}">Зареєструватися</a>
-            {% endif %}
-        </nav>
-    </header>
+        <a href="#hero">Головна</a>
+        <a href="#join">Як допомогти</a>
+        <a href="#contact">Контакти</a>
+
+        {% if user.is_authenticated %}
+        <!-- Посилання на профіль -->
+        <a href="{% url 'profile' %}">Профіль</a>
+        <a href="{% url 'account_logout' %}">Вийти</a>
+        {% else %}
+        <!-- Якщо користувач не авторизований -->
+        <a href="{% url 'account_login' %}">Увійти</a>
+        <a href="{% url 'account_signup' %}">Зареєструватися</a>
+        {% endif %}
+    </nav>
 
     <main>
         <!-- Hero Section -->
@@ -46,18 +46,103 @@
                 <a href="{% url 'animal_list' %}" class="btn">Переглянути каталог</a>
             </div>
         </section>
-        
+
         <!-- About Section -->
         <section id="about">
-            <h2>Про нас</h2>
-            <p>HomeFound - це більше, ніж просто притулок...</p>
+            <h2>Чому HomeFound?</h2>
+            <p>HomeFound - це всеукраїнська мережа притулків, де покинуті тварини знаходять любов, турботу та нові родини. Наша
+                місія - об'єднати чуйних людей з тваринами, які потребують дому, по всій країні.</p>
+        
+            <div class="features">
+                <div class="feature">
+                    <h3>Широкий вибір</h3>
+                    <p>Від грайливих кошенят до мудрих старших собак - у нас кожен знайде свого ідеального компаньйона.</p>
+                </div>
+                <div class="feature">
+                    <h3>Зручне розташування</h3>
+                    <p>Не важливо, де ви живете - притулок HomeFound завжди поруч. Наша мережа охоплює всі регіони України.</p>
+                </div>
+                <div class="feature">
+                    <h3>Професійна допомога</h3>
+                    <p>Наші досвідчені фахівці допоможуть вам обрати тварину, яка найкраще підходить вашому способу життя та
+                        очікуванням.</p>
+                </div>
+            </div>
+        
+            <div class="features">
+                <div class="feature">
+                    <h3>Турбота про здоров'я</h3>
+                    <p>Кожна тварина в наших притулках отримує необхідне лікування, вакцинацію та стерилізацію перед
+                        всиновленням.</p>
+                </div>
+                <div class="feature">
+                    <h3>Підтримка після всиновлення</h3>
+                    <p>Наша турбота не закінчується, коли ви забираєте тварину додому. Ми завжди готові надати пораду чи
+                        допомогу у догляді за вашим новим другом.</p>
+                </div>
+                <div class="feature">
+                    <h3>Прозора система</h3>
+                    <p>Ми відкрито розповідаємо про наші процедури, фінанси та історії успіху. Ви завжди можете бути впевнені,
+                        що ваша допомога йде на благо тварин.</p>
+                </div>
+            </div>
         </section>
 
-        <!-- Join Section -->
+
+        <!-- Секція Join -->
         <section id="join">
-            <h2>Як ви можете долучитися</h2>
-            <h3>Всиновлення...</h3>
+            <div class="join-container">
+                <!-- Секція всиновлення -->
+                <div class="adoption-section">
+                    <div class="join-image">
+                        <img src="{% static 'images/adopt.jpg' %}" alt="Всиновлення тварини" />
+                        <h3 class="join-title">Як долучитися? Всиновлення: Подаруйте дім і любов</h3>
+                        <div class="instruction-card">
+                            <ol>
+                                <li>Перегляньте наш онлайн-каталог тварин або відвідайте найближчий притулок.</li>
+                                <li>Заповніть анкету для всиновлення, вказавши усі необхідні дані.</li>
+                                <li>Чекайте на підтвердження від нашої команди — ми зв’яжемося з вами найближчим часом.</li>
+                                <li>Отримуйте підтримку та поради від наших фахівців протягом усього періоду адаптації.</li>
+                            </ol>
+                            <a href="{% url 'animal_list' %}" class="btn">Каталог</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Секція волонтерства -->
+                <div class="volunteer-section">
+                    <div class="volunteer-info">
+                        <h4>Волонтерство: Станьте частиною команди</h4>
+                        <ol>
+                            <li>Догляд за тваринами: Допомагайте з годуванням, вигулом та грою з нашими вихованцями.</li>
+                            <li>Участь у заходах: Долучайтеся до організації благодійних акцій, ярмарків та освітніх програм.</li>
+                            <li>Спеціалізована допомога: Якщо ви маєте досвід у ветеринарії, грумінгу чи дресируванні - ваші навички будуть безцінними.</li>
+                            <li>Транспортування: Допомагайте з перевезенням тварин до ветеринарних клінік або нових домівок.</li>
+                            <li>Фотографування та соціальні медіа: Допоможіть нам створювати привабливі профілі для наших вихованців та поширювати інформацію про них.</li>
+                        </ol>
+                        
+                        <a href="{% url 'profile' %}" class="btn">Долучитися</a>
+                    </div>
+                    <div class="volunteer-image">
+                        <img src="{% static 'images/volunteer.jpg' %}" alt="Волонтерська діяльність">
+                    </div>
+                </div>
+
+
+                
+                <!-- Секція донатів -->
+                <div class="donate-section">
+                    <div class="donate-card">
+                        <h3>Допомогти фінансово</h3>
+                        <p>Ваш внесок допоможе забезпечити лікування та харчування для тварин.</p>
+                        <a href="#" class="btn">Пожертвувати</a>
+                    </div>
+                </div>
+                
+            </div>
         </section>
+
+
 
         <!-- Contact Section -->
         <section id="contact">
@@ -72,4 +157,5 @@
         <p>© 2024 HomeFound</p>
     </footer>
 </body>
+
 </html>

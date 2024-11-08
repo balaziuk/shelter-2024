@@ -1,30 +1,71 @@
 {% extends 'shelter/base.html' %}
-{% load static %} <!-- Додайте цю строку -->
+{% load static %}
 
 {% block title %}Усиновлення {{ animal.name }}{% endblock %}
 
 {% block content %}
-<h2>Усиновлення {{ animal.name }}</h2>
+<div class="adoption-page">
+    <!-- Картка тварини -->
+    <div class="animal-card-1">
+        <img src="{% if animal.photo %}{{ animal.photo.url }}{% else %}{% static 'images/default-image.jpg' %}{% endif %}"
+            alt="{{ animal.name }}" class="animal-photo-1">
+        <div class="animal-details-1">
+            <p><strong>Гендер:</strong> {{ animal.get_gender_display }}</p>
+            <p><strong>Вид:</strong> {{ animal.get_species_display }}</p>
+            <p><strong>Порода:</strong> {{ animal.breed }}</p>
+            <p><strong>Вік:</strong> {{ animal.age }} років</p>
+            <p><strong>Стан здоров'я:</strong> {{ animal.health_status }}</p>
+        </div>
+    </div>
 
-<img src="{% if animal.photo %}{{ animal.photo.url }}{% else %}{% static 'images/default-image.jpg' %}{% endif %}"
-    alt="{{ animal.name }}" style="width: 100%; max-width: 400px;">
+    <!-- Форма усиновлення -->
+    <div class="adoption-form">
+        {% if animal.adopted %}
+        <p class="adopted-message">Ця тварина вже усиновлена.</p>
+        {% else %}
+        <form method="post">
+            <h2>Форма усиновлення</h2>
+            {% csrf_token %}
+    
+            <div class="form-group">
+                <label for="first_name">Ім'я:</label>
+                {{ form.first_name }}
+            </div>
+    
+            <div class="form-group">
+                <label for="last_name">Прізвище:</label>
+                {{ form.last_name }}
+            </div>
+    
+            <div class="form-group">
+                <label for="birth_date">Дата народження:</label>
+                {{ form.birth_date }}
+            </div>
+    
+            <div class="form-group">
+                <label for="address">Адреса:</label>
+                {{ form.address }}
+            </div>
+    
+            <div class="form-group">
+                <label for="phone_number">Номер телефону:</label>
+                {{ form.phone_number }}
+            </div>
+    
+            <div class="form-group">
+                <label for="email">Електронна адреса:</label>
+                {{ form.email }}
+            </div>
+    
+            <div class="form-group">
+                {{ form.agree_to_adopt }}
+                <label for="agree_to_adopt">Погоджуюсь з умовами усиновлення</label>
+            </div>
+    
+            <button type="submit" class="btn">Усиновити</button>
+        </form>
+        {% endif %}
+    </div>
 
-<div class="animal-details">
-    <p>Гендер: {{ animal.get_gender_display }}</p>
-    <p>Вид: {{ animal.get_species_display }}</p>
-    <p>Порода: {{ animal.breed }}</p>
-    <p>Вік: {{ animal.age }} років</p>
-    <p>Стан здоров'я: {{ animal.health_status }}</p>
 </div>
-
-{% if animal.adopted %}
-<p>Ця тварина вже усиновлена.</p>
-{% else %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Усиновити</button>
-</form>
-{% endif %}
-
 {% endblock %}

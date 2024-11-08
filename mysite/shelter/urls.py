@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import animal_list_dogs, animal_list_cats, animal_list_other, animal_list, profile, add_animal
+from .views import animal_list_dogs, animal_list_cats, animal_list_other, animal_list, profile, add_animal, generate_adoption_pdf
 from allauth.account.views import LoginView, SignupView
 from .views import logout_view
 from . import views
@@ -16,4 +16,6 @@ urlpatterns = [
     path('signup/', SignupView.as_view(), name='account_signup'),  
     path('adopt_animal/<int:animal_id>/', views.adopt_animal, name='adopt_animal'),
     path('add-animal/', add_animal, name='add_animal'),
+    path('adopt_animal/<int:animal_id>/pdf/', generate_adoption_pdf, name='download_pdf'),
+
 ]

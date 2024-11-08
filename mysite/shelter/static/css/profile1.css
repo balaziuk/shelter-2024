@@ -1,0 +1,124 @@
+/* #region Загальні стилі */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    /* Займає всю висоту екрану */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f8f3e5;
+    color: #3b3b3b;
+    display: flex;
+    flex-direction: column;
+}
+
+/* #endregion */
+
+/* #region Основний контент */
+main {
+    max-width: 960px;
+    width: 100%;
+    margin: 2rem auto;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+/* #endregion */
+
+/* #region Заголовок */
+header {
+    background-color: #3b3b3b;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+header nav a {
+    color: white;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    text-decoration: none;
+}
+
+/* #endregion */
+
+/* #region Заголовки */
+h2 {
+    color: #3b3b3b;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    color: #3b3b3b;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+/* #endregion */
+
+/* #region Списки */
+ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+ul li {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    color: #3b3b3b;
+}
+
+/* #endregion */
+
+/* #region Кнопки */
+.btn,
+button[type="submit"] {
+    background-color: #3b3b3b;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.btn:hover,
+button[type="submit"]:hover {
+    background-color: #3b3b3b;
+}
+
+/* #endregion */
+
+/* #region Відступи для тексту */
+.text {
+    margin-bottom: 1.5rem;
+    /* Відступ знизу для тексту */
+}
+
+/* #endregion */

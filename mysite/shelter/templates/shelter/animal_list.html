@@ -4,18 +4,19 @@
 {% block title %}Список тварин{% endblock %}
 
 {% block content %}
-    <h2>Улюбленці притулку</h2>
-
+   <!---<h2>Улюбленці притулку</h2>-->
     {% if animals %}
         <div class="animal-list">
             {% for animal in animals %}
             <div class="animal-card">
-                <img src="{% if animal.photo %}{{ animal.photo.url }}{% else %}{% static 'images/default-image.jpg' %}{% endif %}" 
-                     alt="{{ animal.name }}" 
-                     class="animal-photo"
-                     style="cursor: pointer;" 
-                     onclick="openModal('{{ animal.name|escapejs }}', '{{ animal.get_gender_display|escapejs }}',
-                      '{{ animal.get_species_display|escapejs }}', '{{ animal.breed|escapejs }}', '{{ animal.age }}', '{{ animal.health_status|escapejs }}')">
+                <img src="{% if animal.photo %}{{ animal.photo.url }}{% else %}{% static 'images/default-image.jpg' %}{% endif %}"
+                    alt="{{ animal.name }}" class="animal-photo" style="cursor: pointer;" onclick="openModal('{{ animal.name|escapejs }}', 
+                                                         '{{ animal.get_gender_display|escapejs }}',
+                                                         '{{ animal.get_species_display|escapejs }}', 
+                                                         '{{ animal.breed|escapejs }}', 
+                                                         '{{ animal.age }}', 
+                                                         '{{ animal.health_status|escapejs }}', 
+                                                         '{{ animal.id }}')">
                 <div class="animal-info">
                     <h3>{{ animal.name }}</h3>
                     <p>Гендер: {{ animal.get_gender_display }}</p>
@@ -42,7 +43,7 @@
             <h2 id="modalAnimalName"></h2>
             <img id="modalAnimalImage" src="" alt="" style="width: 100%; height: auto;" />
             <p id="modalAnimalDetails"></p>
-            <button id="adoptButton">Всиновити</button>
+            <button class="btn" id="adoptButton">Всиновити</button>
         </div>
     </div>
 

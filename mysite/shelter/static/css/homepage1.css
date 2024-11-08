@@ -1,0 +1,414 @@
+/* #region body */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+/* #endregion */
+
+/*  #region Стилі для навігаційної панелі */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 12px;
+    background-color: transparent;
+    position: absolute;
+    width: calc(100% - 24px);
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+
+
+.logo {
+    color: white;
+    font-size: 24px;
+    margin-right: auto;
+    margin-left: 12px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+    margin-left: 20px;
+}
+
+.nav a:hover {
+    color: #ffffff;
+}
+/* #endregion */
+
+/* #region Hero Section */
+#hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url("/static/images/HP.jpg");
+    background-position: center;
+    background-size: cover;
+    color: white;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: right;
+    margin-right: 80px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 4px;
+}
+
+.hero-content .btn {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.hero-content .btn:hover {
+    background-color: #00050a;
+}
+/* #endregion Hero Section */
+
+/* #region About Section */
+#about {
+    padding: 60px 20px;
+    background-color: #f7f3e5;
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #3b3b3b;
+}
+
+#about p {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #3b3b3b;
+}
+
+/* Стилі для характеристик */
+.features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.feature {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 300px;
+}
+
+.feature h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #3b3b3b;
+}
+
+.feature p {
+    font-size: 16px;
+    color: #3b3b3b;
+}
+
+/* #endregion */
+
+/* #region Join Section */
+#join {
+    padding: 80px 20px;
+    background-color: #f7f3e5;
+    text-align: center;
+}
+
+.join-container {
+    position: relative;
+}
+
+.adoption-section,
+.volunteer-section,
+.donate-info {
+    margin-bottom: 40px;
+}
+.adoption-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.join-image {
+    position: relative;
+    width: 60%;
+}
+
+.join-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+/* #region Заголовок, накладений на зображення */
+.join-title {
+    position: absolute;
+    top: 25%;
+    left: -20%;
+    color: white;
+    font-size: 24px;
+    text-align: left;
+    max-width: 300px;
+    background-color: #3b3b3b;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Картка інструкцій */
+.instruction-card {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    position: absolute;
+    right: -10%;
+    top: 40%;
+    color: #4f3d3d;
+}
+
+/* Заголовок в інструкції */
+.instruction-card h4 {
+    color: #8b5a2b;
+}
+
+/* Список інструкцій */
+.instruction-card ol {
+    text-align: left;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.instruction-card li {
+    margin-bottom: 15px;
+}
+
+/* Кнопка в інструкції */
+.instruction-card .btn {
+    background-color: #3b3b3b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.instruction-card .btn:hover {
+    background-color: #5e5e5e;
+}
+/* #endregion */
+
+/* #region Секція волонтерства */
+.volunteer-section {
+    display: flex;
+    align-items: flex-start;
+    background-color: #f7f3e5;
+    padding: 40px 20px;
+    margin: 60px 0;
+    justify-content: center;
+}
+
+/* Заголовок секції */
+.volunteer-section h3 {
+    width: 100%;
+    color: #3b3b3b;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+/* Інформаційний блок */
+.volunteer-info {
+    flex: 1;
+    background-color: #f8f8f8;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin-right: 20px;
+    text-align: left;
+}
+
+/* Заголовок та текст всередині картки */
+.volunteer-info h4 {
+    color: #3b3b3b;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.volunteer-info li,
+.volunteer-info ol {
+    font-size: 16px;
+    color: #3b3b3b;
+    margin-bottom: 20px;
+}
+
+/* Список інструкцій */
+.volunteer-info ol {
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+/* Зображення праворуч */
+.volunteer-image {
+    flex: 1;
+    max-width: 400px;
+    margin-left: 20px;
+}
+
+.volunteer-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Стиль кнопки */
+.btn {
+    background-color: #3b3b3b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #5e5e5e;
+}
+/* #endregion */
+
+/* #region Секція донатів */
+.donate-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #f7f3e5;
+    margin: 60px 0;
+}
+
+.donate-card {
+    background-color: #f8f8f8;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок картки */
+.donate-card h3 {
+    color: #3b3b3b;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Текст картки */
+.donate-card p {
+    font-size: 16px;
+    color: #3b3b3b;
+    margin-bottom: 30px;
+}
+
+/* Стиль кнопки */
+.donate-card .btn {
+    background-color: #3b3b3b;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.donate-card .btn:hover {
+    background-color: #5e5e5e;
+}
+/* #endregion */
+
+/* #endregion */
+
+/* #region Contact Section */
+#contact {
+    padding: 60px 20px;
+    background-color: #f7f3e5;
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    
+}
+
+#contact p {
+    font-size: 18px;
+}
+/* #endregion */
+
+/* #region Footer */
+footer {
+    background-color: #3b3b3b;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+}
+/* #endregion */

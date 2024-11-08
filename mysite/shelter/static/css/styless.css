@@ -1,61 +1,68 @@
+/* #region Загальні стилі для сторінки */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f7f3e5;
+    color: #3b3b3b;
     margin: 0;
     padding: 0;
 }
 
+/* #endregion */
+
+/* #region Шапка */
 header {
-    background-color: #4CAF50;
+    background-color: #333333;
     color: white;
-    padding: 1rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-decoration: none;
 }
 
 header .logo {
-    font-size: 1 rem;
-    font-weight: bold;
+    font-size: 24px;
+    text-decoration: none;
     color: white;
+    margin-left: 12px;
 }
 
 header nav a {
     color: white;
-    margin: 0 1rem;
-    text-decoration: none;
-}
-
-
-nav {
-    margin-top: 20px;
-}
-
-nav a {
-    color: white;
     margin: 0 15px;
     text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
 }
 
+header nav a:hover {
+    color: #ffdab9;
+}
+
+/* #endregion */
+
+/* #region Стилі карток тварин */
 .animal-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    padding: 20px 0;
 }
 
 .animal-card {
     width: 30%;
-    border: 1px solid #4CAF50;
     padding: 20px;
-    margin: 10px;
+    margin: 15px;
     box-sizing: border-box;
-    border-radius: 15px; 
-    transition: transform 0.3s ease; 
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    background-color: #f8f8f8;
+    /* Світлий теплий фон */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .animal-card:hover {
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 .animal-photo {
@@ -68,36 +75,48 @@ nav a {
 .animal-info {
     text-align: center;
     margin-top: 10px;
+    color: #3b3b3b;
 }
 
 .clearfix {
     clear: both;
 }
 
+/* #endregion */
 
+/* #region Модальні вікна */
 .modal {
-    position: fixed; 
+    position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; 
+    background-color: #f8f8f8;
+    margin: 10% auto;
     padding: 20px;
-    border: 1px solid #4CAF50;
-    width: 80%; 
+    border-radius: 15px;
+    width: 70%;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.9);
+}
+#animalModal .btn {
+    background-color: #333333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .close {
-    color: #4CAF50;
+    color: #333333;
+    /* Коричневий хрестик */
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -105,20 +124,172 @@ nav a {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #333333;
+    /* Темніший відтінок при наведенні */
     text-decoration: none;
     cursor: pointer;
 }
+
+/* #endregion */
+
+/* #region Стиль кнопок */
 .btn {
-    background-color: #4CAF50; /* Зелений фон */
-    color: white; /* Білий текст */
-    padding: 10px 20px; /* Внутрішні відступи */
-    border: none; /* Без рамки */
-    border-radius: 5px; /* Закруглені кути */
-    cursor: pointer; /* Курсор вказівника */
-    text-decoration: none; /* Без підкреслення */
+    background-color: #8b5a2b;
+    /* Теплий коричневий фон */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #45a049; /* Трохи темніший зелений при наведенні */
+    background-color: #5e4033;
+    /* Трохи темніший фон при наведенні */
 }
+
+/* #endregion */
+
+/* #region Стилі для форми додавання тварини */
+form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #3b3b3b;
+}
+
+h2 {
+    color: #3b3b3b;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+form button[type="submit"] {
+    background-color: #3b3b3b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #3b3b3b;
+}
+
+/* #endregion */
+
+/*  #region Контейнер для сторінки усиновлення */
+.adoption-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 1000px;
+    /* Можна також збільшити ширину контейнера */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f3e5;
+}
+
+/* Картка тварини - розташована ліворуч */
+.animal-card-1 {
+    flex: 1;
+    max-width: 40%;
+    /* Зменшено ширину картки тварини */
+    text-align: center;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.animal-photo-1 {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.animal-details-1 p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #3b3b3b;
+}
+
+/* Форма усиновлення - розташована праворуч */
+.adoption-form {
+    flex: 1;
+    max-width: 55%;
+    /* Збільшено ширину форми */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.adoption-form h2 {
+    text-align: center;
+    color: #3b3b3b;
+    margin-bottom: 20px;
+}
+
+/* Загальний стиль для кожної групи полів */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #3b3b3b;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #f9f9f9;
+}
+
+/* Повідомлення про усиновлену тварину */
+.adopted-message {
+    color: #8b0000;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Кнопка усиновлення */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #3b3b3b;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #5e4033;
+}
+/* #endregion */

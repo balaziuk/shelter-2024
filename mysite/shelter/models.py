@@ -75,3 +75,18 @@ class VolunteeringActivity(models.Model):
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)  
     activity_type = models.CharField(max_length=100)  
     timestamp = models.DateTimeField(auto_now_add=True)  
+
+
+class AdoptionRequest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    birth_date = models.DateField()
+    address = models.TextField()
+    phone_number = models.CharField(max_length=15)
+    email = models.EmailField()
+    agree_to_adopt = models.BooleanField()
+
+    def __str__(self):
+        return f"Заява на усиновлення тварини {self.animal.name} від {self.first_name} {self.last_name}"

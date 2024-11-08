@@ -79,6 +79,16 @@ def add_animal(request):
 
     return render(request, 'shelter/add_animal.html', {'form': form})
 
+# views.py
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
+from .models import Animal, AdoptionRequest
+from .forms import AdoptionForm
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from io import BytesIO
+from django.contrib import messages
 @login_required
 def adopt_animal(request, animal_id):
     animal = get_object_or_404(Animal, id=animal_id)
@@ -89,11 +99,62 @@ def adopt_animal(request, animal_id):
 
     if request.method == "POST":
         form = AdoptionForm(request.POST)
-        if form.is_valid() and form.cleaned_data.get("agree_to_adopt"):
-            animal.adopt(request.user) 
-            messages.success(request, "Дякуємо за усиновлення! Ви стали опікуном тварини.")
-            return redirect('profile')
+        if form.is_valid():
+            # Створюємо запис у базі для заявки
+            adoption_request = form.save(commit=False)
+            adoption_request.user = request.user  # Призначаємо користувача
+            adoption_request.animal = animal  # Призначаємо тварину
+            adoption_request.save()
+
+            # Змінюємо статус тварини на усиновлену
+            animal.adopt(adoption_request.user)  # Викликаємо метод adopt
+
+            messages.success(request, f"Ви успішно подали заявку на усиновлення тварини {animal.name}.")
+            
+            # Після успішної подачі форми перенаправляємо на сторінку завантаження PDF
+            return redirect('download_pdf', animal_id=animal.id)
+
     else:
         form = AdoptionForm()
 
     return render(request, 'shelter/adopt_animal.html', {'animal': animal, 'form': form})
+
+
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from io import BytesIO
+from django.http import HttpResponse
+from .models import AdoptionRequest
+from django.shortcuts import get_object_or_404
+
+def generate_adoption_pdf(request, animal_id):
+    # Get the relevant adoption request from the database
+    adoption_request = get_object_or_404(AdoptionRequest, animal__id=animal_id, user=request.user)
+
+    # Create PDF
+    buffer = BytesIO()
+    pdf = canvas.Canvas(buffer, pagesize=A4)
+
+    # Use standard Helvetica font
+    pdf.setFont("Helvetica", 12)  # Use standard Helvetica font
+
+    # Add text to the PDF
+    pdf.drawString(100, 800, f"Adoption Request for Animal {adoption_request.animal.name}")
+    pdf.drawString(100, 780, f"First Name: {adoption_request.first_name}")
+    pdf.drawString(100, 760, f"Last Name: {adoption_request.last_name}")
+    pdf.drawString(100, 740, f"Date of Birth: {adoption_request.birth_date}")
+    pdf.drawString(100, 720, f"Address: {adoption_request.address}")
+    pdf.drawString(100, 700, f"Phone Number: {adoption_request.phone_number}")
+    pdf.drawString(100, 680, f"Email: {adoption_request.email}")
+    pdf.drawString(100, 660, f"Animal: {adoption_request.animal.name}")
+    pdf.drawString(100, 640, f"Agree to Adopt: {adoption_request.agree_to_adopt}")
+
+    pdf.showPage()
+    pdf.save()
+
+    # Return the PDF response
+    buffer.seek(0)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="adoption_request_{adoption_request.animal.id}.pdf"'
+    response.write(buffer.read())
+    return response

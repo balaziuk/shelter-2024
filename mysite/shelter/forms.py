@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Animal  
+from .models import User, Animal, AdoptionRequest
 from allauth.account.forms import SignupForm
 
 
@@ -71,8 +71,10 @@ class AdoptionForm(forms.ModelForm):
     last_name = forms.CharField(label="Прізвище", max_length=50)
     birth_date = forms.DateField(label="Дата народження", widget=forms.SelectDateWidget(years=range(1900, 2025)))
     address = forms.CharField(label="Адреса проживання", widget=forms.Textarea)
+    phone_number = forms.CharField(max_length=15, required=True, label="Номер телефону")
+    email = forms.EmailField(required=True, label="Електронна адреса")
     agree_to_adopt = forms.BooleanField(label="Погоджуюся на усиновлення", required=True)
 
     class Meta:
-        model = Animal
-        fields = []
+        model = AdoptionRequest  # Тепер форма зв'язана з моделлю AdoptionRequest
+        fields = ['first_name', 'last_name', 'birth_date', 'address', 'phone_number', 'email', 'agree_to_adopt']
